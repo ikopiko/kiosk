@@ -1132,6 +1132,7 @@ export default {
                 });
                 this.$store.dispatch('addPizzaList', pizzaArr)
               });
+              this.declineHalfs();
               this.$emit('closeConstructorDialog');
             // this.$forceUpdate();
         },
@@ -1140,8 +1141,16 @@ export default {
             this.confirmHalfDialog = false;
         },
         declineHalfs(){
+            this.pizzaList.forEach( x=> {
+              x.isSelected = false;
+            });
             this.bothHalfSelected = false;
             this.confirmHalfDialog = false;
+            // this.closeDialog();
+            this.selectedItem.half1 = {m: '', name:''};
+            this.selectedItem.half2 = {m: '', name:''};
+            this.itemHalf = 1;
+            this.bothHalfSelected = false;
         },
         addToCart(item){
 
