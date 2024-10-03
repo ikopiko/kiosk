@@ -472,16 +472,8 @@ hr {
 {
   font-size: 20px;
   font-weight: 600;
-  background: #E4E4E4 !important;
-  width: 100% !important;
-  height: 60px !important;
+  background: rebeccapurple;
+  width: 100%;
+  height: 50px !important;
 }
-.webertelaButtonsNext
-{
-  font-size: 20px;
-  font-weight: 600;
-  background: #137156 !important;
-  width: 100% !important;
-  height: 60px !important;
-  color: #ffffff !important;
 }

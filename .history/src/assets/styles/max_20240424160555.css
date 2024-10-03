@@ -461,27 +461,3 @@ hr {
 {
   padding:16px 24px 10px 43px ;
 }
-.webertelaDialog.v-dialog > .v-overlay__content > .v-card, .v-dialog > .v-overlay__content > form > .v-card
-{
-  width: 700px !important;
-  position: relative;
-  top: -100px;
-  height: 300px;
-}
-.webertelaButtons
-{
-  font-size: 20px;
-  font-weight: 600;
-  background: #E4E4E4 !important;
-  width: 100% !important;
-  height: 60px !important;
-}
-.webertelaButtonsNext
-{
-  font-size: 20px;
-  font-weight: 600;
-  background: #137156 !important;
-  width: 100% !important;
-  height: 60px !important;
-  color: #ffffff !important;
-}

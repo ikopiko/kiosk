@@ -701,19 +701,21 @@
         <h5 style="padding-top: 30x;">Or you can go back and select new ones</h5>
         <v-card-actions>
           <!-- <v-spacer></v-spacer> -->
-          <v-row style="padding-top: 40px">
+          <v-row>
             <v-col>
               <v-btn
+            color="green-darken-1"
+            variant="text"
             @click="declineHalfs"
-            class="webertelaButtons"
           >
             go Back
           </v-btn>
             </v-col>
             <v-col>
               <v-btn
+            color="green-darken-1"
+            variant="text"
             @click="confirmHalfs"
-            class="webertelaButtonsNext"
           >
             Next
           </v-btn>

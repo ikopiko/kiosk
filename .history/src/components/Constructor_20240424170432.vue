@@ -713,7 +713,7 @@
             <v-col>
               <v-btn
             @click="confirmHalfs"
-            class="webertelaButtonsNext"
+            class="webertelaButtons green"
           >
             Next
           </v-btn>

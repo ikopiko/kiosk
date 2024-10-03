@@ -6,15 +6,10 @@
                 <v-icon @click="closeDialog">mdi-close</v-icon>
             <!-- </v-btn> -->
             <v-card-text>
-              <v-row>
-                <v-col class="text-center">
-                  <h3>please choose of pizza options for A and B sides:</h3>
-                </v-col>
-              </v-row>
                 <v-row class="product-size-wrapper orderTitle">
                     <v-col 
-                    cols="5"
-                    offset="1"
+                    cols="3"
+                    offset="2"
                     >
                         <div class="constructorBox constructorBoxBorder">
                             <img
@@ -23,20 +18,15 @@
                             />
                             <v-row>
                                 <div class="text-title">
-                                  <h3> {{ selectedItem.half1.name }}</h3>
-                                </div>
-                            </v-row>
-                            <v-row>
-                                <div class="text-title">
-                                    <small>{{ selectedItem.half1.description }}</small>
+                                    {{ selectedItem.half1.description }} 
                                 </div>
                             </v-row>
                         </div>
                     </v-col>
-                    <!-- <v-col cols="2"> -->
+                    <v-col cols="2">
                         <!-- <v-icon size="x-large" style="margin-top: 100px;" >mdi-close</v-icon> -->
-                    <!-- </v-col> -->
-                    <v-col cols="5">
+                    </v-col>
+                    <v-col cols="3">
                         <div class="constructorBox constructorBoxBorder">
                             <img
                                 :src="selectedItem.half2.m"
@@ -44,18 +34,12 @@
                             />
                             <v-row>
                                 <div class="text-title">
-                                  <h3> {{ selectedItem.half2.name }}</h3>
-                                </div>
-                            </v-row>
-                            <v-row>
-                                <div class="text-title">
-                                    <small>{{ selectedItem.half2.description }}</small>
+                                    {{ selectedItem.half2.name }}
                                 </div>
                             </v-row>
                         </div>
                     </v-col>
                 </v-row>
-                <v-row style="height: 140px">&nbsp;</v-row>
                 <v-row>
                         <v-col v-for="(product, index) in pizzaList" :key="index" cols="4" class="unselectable" @click="halfSelect(product)" :class="product.isSelected ? 'pizza_inactive' : ''" >
                             <span :class="product.isSelected ? 'checkmark' : ''"></span>
@@ -692,33 +676,28 @@
       v-model="confirmHalfDialog"
       persistent
       width="auto"
-      class="webertelaDialog"
     >
-      <v-card style="text-align: center; padding-top: 50px">
-       
-        <h3>Are you sure you want to select this pizzas?</h3>
-        
-        <h5 style="padding-top: 30x;">Or you can go back and select new ones</h5>
+      <v-card>
+        <v-card-title class="text-h5">
+          Are you sure you want to select this pizzas?
+        </v-card-title>
+        <v-card-text>Or you can go back and select new ones</v-card-text>
         <v-card-actions>
-          <!-- <v-spacer></v-spacer> -->
-          <v-row style="padding-top: 40px">
-            <v-col>
-              <v-btn
+          <v-spacer></v-spacer>
+          <v-btn
+            color="green-darken-1"
+            variant="text"
             @click="declineHalfs"
-            class="webertelaButtons"
           >
-            go Back
+            Disagree
           </v-btn>
-            </v-col>
-            <v-col>
-              <v-btn
+          <v-btn
+            color="green-darken-1"
+            variant="text"
             @click="confirmHalfs"
-            class="webertelaButtonsNext"
           >
-            Next
+            Agree
           </v-btn>
-            </v-col>
-          </v-row>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -1024,7 +1003,6 @@ export default {
                     name: "",
                     sauce: "sauce",
                     defaultToppings: [],
-                    description: '',
                     toppings: [],
                     s: "",
                     m: "",
@@ -1035,7 +1013,6 @@ export default {
                     name: "",
                     sauce: "sauce",
                     defaultToppings: [],
-                    description: '',
                     toppings: [],
                     s: "",
                     m: "",
@@ -1051,7 +1028,6 @@ export default {
                 this.selectedItem.half1.is_special = item.is_special;
                 this.selectedItem.half1.priceBySizes = item.priceBySizes;
                 this.selectedItem.half1.defaultToppings = item.defaultToppings;
-                this.selectedItem.half1.description = item.description;
                 this.selectedItem.price = item.priceBySizes.m / 2;
                 this.itemFirstHalf.price = item.priceBySizes.m /2;
                 this.selectedItem.size = "m";
@@ -1071,7 +1047,6 @@ export default {
                 this.itemFirstHalf.price + item.priceBySizes.m / 2;
                 this.selectedItem.price = this.selectedItem.price.toFixed(2);
                 this.selectedItem.half2.defaultToppings = item.defaultToppings;
-                this.selectedItem.half2.description = item.description;
                 this.selectedItem.half2.s = item.s;
                 this.selectedItem.half2.m = item.m;
                 this.selectedItem.half2.xl = item.xl;
@@ -1124,9 +1099,6 @@ export default {
         },
         
         closeDialog(){
-            this.pizzaList.forEach( x=> {
-              x.isSelected = false;
-            });
             this.selectedItem.half1 = {m: '', name:''};
             this.selectedItem.half2 = {m: '', name:''};
             this.itemHalf = 1;
@@ -1164,20 +1136,20 @@ export default {
             // this.$forceUpdate();
         },
         confirmHalfs(){
-          this.bothHalfSelected = true;
-          this.confirmHalfDialog = false;
+            this.bothHalfSelected = true;
+            this.confirmHalfDialog = false;
         },
         declineHalfs(){
-          this.pizzaList.forEach( x=> {
-            x.isSelected = false;
-          });
-          this.bothHalfSelected = false;
-          this.confirmHalfDialog = false;
-          // this.closeDialog();
-          this.selectedItem.half1 = {m: '', name:''};
-          this.selectedItem.half2 = {m: '', name:''};
-          this.itemHalf = 1;
-          this.bothHalfSelected = false;
+            this.pizzaList.forEach( x=> {
+              x.isSelected = false;
+            });
+            this.bothHalfSelected = false;
+            this.confirmHalfDialog = false;
+            // this.closeDialog();
+            this.selectedItem.half1 = {m: '', name:''};
+            this.selectedItem.half2 = {m: '', name:''};
+            this.itemHalf = 1;
+            this.bothHalfSelected = false;
         },
         addToCart(item){
 

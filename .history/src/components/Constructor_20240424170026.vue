@@ -704,6 +704,8 @@
           <v-row style="padding-top: 40px">
             <v-col>
               <v-btn
+            color="green-darken-1"
+            variant="text"
             @click="declineHalfs"
             class="webertelaButtons"
           >
@@ -712,8 +714,10 @@
             </v-col>
             <v-col>
               <v-btn
+            color="green-darken-1"
+            variant="text"
             @click="confirmHalfs"
-            class="webertelaButtonsNext"
+            class="webertelaButtons"
           >
             Next
           </v-btn>

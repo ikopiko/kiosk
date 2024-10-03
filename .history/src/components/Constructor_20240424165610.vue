@@ -704,16 +704,18 @@
           <v-row style="padding-top: 40px">
             <v-col>
               <v-btn
+            color="green-darken-1"
+            variant="text"
             @click="declineHalfs"
-            class="webertelaButtons"
           >
             go Back
           </v-btn>
             </v-col>
             <v-col>
               <v-btn
+            color="green-darken-1"
+            variant="text"
             @click="confirmHalfs"
-            class="webertelaButtonsNext"
           >
             Next
           </v-btn>

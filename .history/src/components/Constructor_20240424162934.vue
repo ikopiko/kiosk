@@ -7,7 +7,7 @@
             <!-- </v-btn> -->
             <v-card-text>
               <v-row>
-                <v-col class="text-center">
+                <v-col>
                   <h3>please choose of pizza options for A and B sides:</h3>
                 </v-col>
               </v-row>
@@ -692,33 +692,28 @@
       v-model="confirmHalfDialog"
       persistent
       width="auto"
-      class="webertelaDialog"
     >
-      <v-card style="text-align: center; padding-top: 50px">
-       
-        <h3>Are you sure you want to select this pizzas?</h3>
-        
-        <h5 style="padding-top: 30x;">Or you can go back and select new ones</h5>
+      <v-card>
+        <v-card-title class="text-h5">
+          Are you sure you want to select this pizzas?
+        </v-card-title>
+        <v-card-text>Or you can go back and select new ones</v-card-text>
         <v-card-actions>
-          <!-- <v-spacer></v-spacer> -->
-          <v-row style="padding-top: 40px">
-            <v-col>
-              <v-btn
+          <v-spacer></v-spacer>
+          <v-btn
+            color="green-darken-1"
+            variant="text"
             @click="declineHalfs"
-            class="webertelaButtons"
           >
             go Back
           </v-btn>
-            </v-col>
-            <v-col>
-              <v-btn
+          <v-btn
+            color="green-darken-1"
+            variant="text"
             @click="confirmHalfs"
-            class="webertelaButtonsNext"
           >
             Next
           </v-btn>
-            </v-col>
-          </v-row>
         </v-card-actions>
       </v-card>
     </v-dialog>

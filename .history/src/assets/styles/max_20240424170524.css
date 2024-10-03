@@ -472,7 +472,7 @@ hr {
 {
   font-size: 20px;
   font-weight: 600;
-  background: #E4E4E4 !important;
+  background: #FBCD4D !important;
   width: 100% !important;
   height: 60px !important;
 }
@@ -483,5 +483,5 @@ hr {
   background: #137156 !important;
   width: 100% !important;
   height: 60px !important;
-  color: #ffffff !important;
+  color: #ffffff;
 }
