@@ -81,7 +81,7 @@ const getters = {
         var totalPrice = 0;
 
         state.cart.forEach(x => {
-            totalPrice = totalPrice + (Number(x.price) * Number(x.qty))
+            totalPrice = totalPrice + (Number(x.totalPrice) * Number(x.qty))
         });
 
         return totalPrice.toFixed(2)

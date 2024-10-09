@@ -46,7 +46,7 @@
                         </v-card-title>
                         <v-card-subtitle>
                             <h6>
-                            {{ product.qty }} X {{ Number(product.price).toFixed(2) }} = {{ (product.qty*product.price).toFixed(2) }} Gel
+                            {{ product.qty }} X {{ Number(product.totalPrice).toFixed(2) }} = {{ (product.qty*product.totalPrice).toFixed(2) }} Gel
                         </h6>
                         </v-card-subtitle>
                     </span>
@@ -59,7 +59,7 @@
                         </v-card-subtitle>
                         <v-card-subtitle class="cartqty">
                             
-                            {{ product.qty }} X {{ Number(product.price).toFixed(2) }} = {{ (product.qty*product.price).toFixed(2) }} Gel
+                            {{ product.qty }} X {{ Number(product.totalPrice).toFixed(2) }} = {{ (product.qty*product.totalPrice).toFixed(2) }} Gel
                        
                         </v-card-subtitle>
                         <v-card-subtitle  class="racxa" v-if="product.toppings.length != 0" bold>

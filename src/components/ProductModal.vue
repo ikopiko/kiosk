@@ -26,57 +26,6 @@
                                             :class="{ hidden: size !== 'xl' }"
                                         />
                                     </div>
-                                    <!-- <div class="row orderTitle">
-                                            <div class="mb-2">
-                                            <h4 class="base">{{ sizeFull }}  <strong> {{ product.name }} &nbsp; </strong>  
-                                        <span class="orange" v-if="crust != 'original'">
-                                            {{ crustFull }} &nbsp;
-                                        </span>
-                                        <span class="orange" v-if="sauce != 'sauce'">
-                                            {{ sauceFull }} &nbsp;
-                                        </span >
-                                        </h4>
-                                    </div>
-                                    <ul class="defToppingebi">
-                                        <li
-                                        class="halfToppings"
-                                        v-for="(
-                                            defTopping, index
-                                        ) in product.defaultToppings"
-                                        :key="index"
-                                        @click="deleteDefaultTopping(defTopping)"
-                                        >
-                                        <h6
-                                            :class="
-                                            defTopping.isDeleted ? 'deletedTopping' : ''
-                                            "
-                                            >{{ defTopping.name }}
-                                    </h6>
-
-                                        <span
-                                            :class="
-                                            defTopping.isDeleted ? 'deletedTopping' : ''
-                                            "
-                                            v-if="
-                                            defTopping.isDeleted &&
-                                            product.is_special == 0 &&
-                                            defTopping.id != 5
-                                            "
-                                        >
-                                            - {{ defTopping.price }}
-                                        </span>
-                                        <v-icon v-if="defTopping.isDeleted">
-                                            local_pizza
-                                        </v-icon>
-                                        <v-icon> mdi-close </v-icon>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="qtyComponent orderTitle">
-                                    <div class="minusBtn unselectable" :class="productQty > 1 ? 'minusBtn' : 'hiddenAnimation'" @click="decreaseQty">-</div>
-                                    <div class="qtyNum unselectable">{{ productQty }}</div>
-                                    <div class="plusBtn unselectable" @click="increaseQty">+</div>
-                                </div> -->
                             </v-row>
                             </v-sheet>
                         </v-col>
@@ -1048,6 +997,7 @@ export default {
             temp.oldPrice = temp.price;
             temp.newPrice = this.countPrice;
             temp.price = this.countPrice;
+            temp.totalPrice = this.countPrice;
             temp.img = temp.m;
             this.$store.dispatch('addToCart', temp);
             // temp.price = temp.oldPrice;

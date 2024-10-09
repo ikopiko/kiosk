@@ -84,267 +84,311 @@
         </v-card>
         <v-card v-else>
             <v-icon @click="closeDialog">mdi-close</v-icon>
-            <div class="backgraundi">
-              <img src="@/assets/img/pizzaBack.png" class="mainImage" />
-              <div class="insideImageSHalfL" :class="{ hidden: size !== 's' }">
-                <img :src="selectedItem.half1.s" />
-              </div>
-              <div class="insideImageSHalfR" :class="{ hidden: size !== 's' }">
-                <img :src="selectedItem.half2.s" />
-              </div>
-              <div class="insideImageMHalfL" :class="{ hidden: size !== 'm' }">
-                <img :src="selectedItem.half1.m" />
-              </div>
-              <div class="insideImageMHalfR" :class="{ hidden: size !== 'm' }">
-                <img :src="selectedItem.half2.m" />
-              </div>
-              <div
-                class="insideImageXlHalfL"
-                :class="{ hidden: size !== 'xl' }"
-              >
-                <img :src="selectedItem.half1.xl" />
-              </div>
-              <div
-                class="insideImageXlHalfR"
-                :class="{ hidden: size !== 'xl' }"
-              >
-                <img :src="selectedItem.half2.xl" />
-              </div>
-            </div>
 
+            <v-row no-gutters>
+              <v-col cols="5">
+                  <v-sheet class="pa-2 ma-2">
+                      <v-row>
+                          <div class="backgraundi orderTitle">
+                            <img src="@/assets/img/pizzaBack.png" class="mainImage" />
+                              <div class="insideImageSHalfL" :class="{ hidden: size !== 's' }">
+                                <img :src="selectedItem.half1.s" />
+                              </div>
+                              <div class="insideImageSHalfR" :class="{ hidden: size !== 's' }">
+                                <img :src="selectedItem.half2.s" />
+                              </div>
+                              <div class="insideImageMHalfL" :class="{ hidden: size !== 'm' }">
+                                <img :src="selectedItem.half1.m" />
+                              </div>
+                              <div class="insideImageMHalfR" :class="{ hidden: size !== 'm' }">
+                                <img :src="selectedItem.half2.m" />
+                              </div>
+                              <div
+                                class="insideImageXlHalfL"
+                                :class="{ hidden: size !== 'xl' }"
+                              >
+                                <img :src="selectedItem.half1.xl" />
+                              </div>
+                              <div
+                                class="insideImageXlHalfR"
+                                :class="{ hidden: size !== 'xl' }"
+                              >
+                                <img :src="selectedItem.half2.xl" />
+                              </div>
+                          </div>
+                  </v-row>
+                  </v-sheet>
+              </v-col>
+              <v-col cols="7">
+                  <v-sheet class="pa-2 ma-2">
+                      <v-row>
+                          <div class="product-size-wrapper orderTitle" style="position:relative; top:60px;">
+                              <div class="row ">
+                                  <div
+                                      class="col-md-4  btn1 btn-yellow pizzaSize transition"
+                                      @click="sizeBtn('s')"
+                                      :class="{ active: size === 's', btn_inactive : cheeseLoversActive }"
+                                  >
+                                  <span class="settingtxt">
+                                      Small
+                                  </span>
+                                  </div>
+                                  <div
+                                      class="col-md-4 btn1 btn-yellow pizzaSize transition"
+                                      @click="sizeBtn('m')"
+                                      :class="{ active: size === 'm' }"
+                                  >
+                                  <span class="settingtxt">
+                                      Medium
+                                      </span>
+                                  </div>
+                                  <div
+                                      class="col-md-4 btn1 btn-yellow pizzaSize transition"
+                                      @click="sizeBtn('xl')"
+                                      :class="{ active: size === 'xl' , btn_inactive : cheeseLoversActive}"
+                                  >
+                                  <span class="settingtxt">
+                                      XL
+                                      </span>
+                              </div>
+                              </div>
+                              <div class="row">
+                                  <div
+                                      class="col-md-6 btn btn-yellow crustSize transition"
+                                      @click="changeCrust('original')"
+                                      :class="{ active: crust === 'original' }"
+                                  >
+                                  <span class="settingtxt">
+                                      Original
+                                      </span>
+                                  </div>
+                                  <div
+                                      class="col-md-6 btn btn-yellow crustSize transition"
+                                      @click="changeCrust('thin')"
+                                      :class="{ active: crust === 'thin' }"
+                                  >
+                                  <span class="settingtxt">
+                                      Thin
+                                      </span>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div
+                                      class="col-sm-3 btn btn-yellow sauceSize transition"
+                                      @click="changeSauce('sauce')"
+                                      :class="{ active: sauce === 'sauce' }"
+                                  >
+                                  <span class="settingtxt">
+                                      Original
+                                      </span>
+                                  </div>
+                                  <div
+                                      class="col-sm-3 btn btn-yellow sauceSize transition"
+                                      @click="changeSauce('less sauce')"
+                                      :class="{ active: sauce === 'less sauce' }"
+                                  >
+                                  <span class="settingtxt">
+                                      Less Sauce
+                                      </span>
+                                  </div>
+                                  <div
+                                      class="col-sm-3 btn btn-yellow sauceSize transition"
+                                      @click="changeSauce('more sauce')"
+                                      :class="{ active: sauce === 'more sauce' }"
+                                  >
+                                  <span class="settingtxt">
+                                  Heavy Sauce
+                                  </span>
+                                  </div>
+                                  <div
+                                      class="col-sm-3 btn btn-yellow sauceSize transition"
+                                      @click="changeSauce('no sauce')"
+                                      :class="{ active: sauce === 'no sauce' }"
+                                  >
+                                  <span class="settingtxt">
+                                      No Sauce
+                                      </span>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div
+                                      class="col-md-4 btn btn-yellow halfSize transition"
+                                      @click="half = 'a'"
+                                      :class="{ active: half === 'a'}"
+                                  >
+                                  <span class="settingtxt">
+                                      A Side
+                                      </span>
+                                  </div>
+                                  <div
+                                      class="col-md-4 btn btn-yellow halfSize transition" 
+                                      @click="half = 'b'"
+                                      :class="{ active: half === 'b' }"
+                                  >
+                                  <span class="settingtxt">
+                                      B Side
+                                      </span>
+                                  </div>
+                                  <div
+                                      class="col-md-4 btn btn-yellow halfSize transition"
+                                      @click="half = 'w'"
+                                      :class="{ active: half === 'w' }"
+                                  >
+                                  <span class="settingtxt">
+                                      A/B SIDE
+                                      </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </v-row>
+                  </v-sheet>
+              </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <div class="row orderTitle">
+                    <div class="md-12">
+                      <v-card class="pa-2">
+                        <div class="product-info mb-2">
+                        <h5 class="base">{{ sizeFull }}  <strong> {{ selectedItem.name }} </strong>  
+                          <span class="orange" v-if="crust != 'original'">
+                              {{ crustFull }};
+                          </span>
+                          <span class="orange" v-if="sauce != 'sauce'">
+                              {{ sauceFull }} 
+                          </span >
+                          </h5>
+                        </div> 
 
-            <div class="row orderTitle">
-              <div class="md-12">
-                <v-card class="pa-2">
-                  <div class="product-info mb-2">
-                  <h5 class="base">{{ sizeFull }}  <strong> {{ selectedItem.name }} </strong>  
-                    <span class="orange" v-if="crust != 'original'">
-                        {{ crustFull }};
-                    </span>
-                    <span class="orange" v-if="sauce != 'sauce'">
-                        {{ sauceFull }} 
-                    </span >
-                    </h5>
-                  </div> 
+                        <h5 class="mt-2"> A Side</h5>
+                      
+                        <ul class="defToppingebi  mb-2">
+                          <li
+                            class="halfToppings"
+                            v-for="(defTopping, index) in selectedItem.half1
+                              .defaultToppings"
+                            :key="index"
+                            @click="deleteDefaultTopping(defTopping, 'a')"
+                          >
+                            <h6
+                              :class="defTopping.isDeleted ? 'deletedTopping' : ''"
+                              >{{ defTopping.name }}</h6>
+                            <span
+                              :class="defTopping.isDeleted ? 'deletedTopping' : ''"
+                              v-if="
+                                defTopping.isDeleted &&
+                                selectedItem.is_special == 0 &&
+                                defTopping.id != 5
+                              "
+                            >
+                              - {{ defTopping.price }}
+                            </span>
+                            <v-icon v-if="defTopping.isDeleted"> local_pizza </v-icon>
+                            <v-icon v-else> close </v-icon>
+                          </li>
+                        </ul>
+                        <h5> B Side</h5>
+                        <ul class="defToppingebi mb-2">
+                          <li
+                            class="halfToppings"
+                            v-for="(defTopping, index) in selectedItem.half2
+                              .defaultToppings"
+                            :key="index"
+                            @click="deleteDefaultTopping(defTopping, 'b')"
+                          >
+                            <h6
+                              :class="defTopping.isDeleted ? 'deletedTopping' : ''"
+                              >{{ defTopping.name }}</h6
+                            >
+                            <span
+                              :class="defTopping.isDeleted ? 'deletedTopping' : ''"
+                              v-if="
+                                defTopping.isDeleted &&
+                                selectedItem.is_special == 0 &&
+                                defTopping.id != 5
+                              "
+                            >
+                              - {{ defTopping.price }}
+                            </span>
+                            <v-icon v-if="defTopping.isDeleted"> local_pizza </v-icon>
+                            <v-icon v-else> close </v-icon>
+                          </li>
+                        </ul>
+                        <span  v-if="selectedItem.toppings.length">
+                          <h5> A/B SIDE</h5>
+                        </span>
+                        <div class="wholeTopping">
+                          <div
+                            class="d-flex justify-content-center halfToppings"
+                            v-for="(topping, index) in selectedItem.toppings"
+                            :key="index"
+                          >
+                            <h6 v-if="topping.qty == 1">+ {{ topping.name }}</h6>
+                            <h6 v-if="topping.qty != 1"
+                              >+ {{ topping.qty }} {{ topping.name }}</h6
+                            >
+                            <span class="pading-10"
+                              >{{ (topping.price * topping.qty).toFixed(2) }}
+                            </span>
+                          </div>
+                        </div>
 
-                  <h5 class="mt-2"> A Side</h5>
-                 
-                  <ul class="defToppingebi  mb-2">
-                    <li
-                      class="halfToppings"
-                      v-for="(defTopping, index) in selectedItem.half1
-                        .defaultToppings"
-                      :key="index"
-                      @click="deleteDefaultTopping(defTopping, 'a')"
-                    >
-                      <h6
-                        :class="defTopping.isDeleted ? 'deletedTopping' : ''"
-                        >{{ defTopping.name }}</h6>
-                      <span
-                        :class="defTopping.isDeleted ? 'deletedTopping' : ''"
-                        v-if="
-                          defTopping.isDeleted &&
-                          selectedItem.is_special == 0 &&
-                          defTopping.id != 5
-                        "
-                      >
-                        - {{ defTopping.price }}
-                      </span>
-                      <v-icon v-if="defTopping.isDeleted"> local_pizza </v-icon>
-                      <v-icon v-else> close </v-icon>
-                    </li>
-                  </ul>
-                  <h5> B Side</h5>
-                  <ul class="defToppingebi mb-2">
-                    <li
-                      class="halfToppings"
-                      v-for="(defTopping, index) in selectedItem.half2
-                        .defaultToppings"
-                      :key="index"
-                      @click="deleteDefaultTopping(defTopping, 'b')"
-                    >
-                      <h6
-                        :class="defTopping.isDeleted ? 'deletedTopping' : ''"
-                        >{{ defTopping.name }}</h6
-                      >
-                      <span
-                        :class="defTopping.isDeleted ? 'deletedTopping' : ''"
-                        v-if="
-                          defTopping.isDeleted &&
-                          selectedItem.is_special == 0 &&
-                          defTopping.id != 5
-                        "
-                      >
-                        - {{ defTopping.price }}
-                      </span>
-                      <v-icon v-if="defTopping.isDeleted"> local_pizza </v-icon>
-                      <v-icon v-else> close </v-icon>
-                    </li>
-                  </ul>
-                  <span  v-if="selectedItem.toppings.length">
-                    <h5> A/B SIDE</h5>
-                  </span>
-                  <div class="wholeTopping">
-                    <div
-                      class="d-flex justify-content-center halfToppings"
-                      v-for="(topping, index) in selectedItem.toppings"
-                      :key="index"
-                    >
-                      <h6 v-if="topping.qty == 1">+ {{ topping.name }}</h6>
-                      <h6 v-if="topping.qty != 1"
-                        >+ {{ topping.qty }} {{ topping.name }}</h6
-                      >
-                      <span class="pading-10"
-                        >{{ (topping.price * topping.qty).toFixed(2) }}
-                      </span>
+                        <div class="bSideTopping mt-2">
+                          <span v-if="selectedItem.half1.toppings.length">
+                          <h5> A Side</h5>
+                          </span>
+                          <div
+                            class="d-flex justify-content-center halfToppings"
+                            v-for="(topping, index) in selectedItem.half1.toppings"
+                            :key="index"
+                          >
+                            <h6 v-if="topping.qty == 1"
+                              >A + {{ topping.name }}</h6
+                            >
+                            <h6 v-if="topping.qty != 1"
+                              >A + {{ topping.qty }} {{ topping.name }}</h6
+                            >
+                            <span>
+                              {{ (topping.price * topping.qty).toFixed(2) }}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div class="bSideTopping mt-2">
+                          <span v-if="selectedItem.half2.toppings.length">
+                            <h5>B Side</h5>
+                          </span>
+                          <div
+                            class="d-flex justify-content-center halfToppings"
+                            v-for="(topping, index) in selectedItem.half2.toppings"
+                            :key="index"
+                          >
+                            <h6 v-if="topping.qty == 1"
+                              >B + {{ topping.name }}</h6
+                            >
+                            <h6 v-if="topping.qty != 1"
+                              >B + {{ topping.qty }} {{ topping.name }}</h6
+                            >
+                            <span>
+                              {{ (topping.price * topping.qty).toFixed(2) }}
+                            </span>
+                          </div>
+                        </div>
+                      </v-card>
                     </div>
                   </div>
-
-                  <div class="bSideTopping mt-2">
-                    <span v-if="selectedItem.half1.toppings.length">
-                    <h5> A Side</h5>
-                    </span>
-                    <div
-                      class="d-flex justify-content-center halfToppings"
-                      v-for="(topping, index) in selectedItem.half1.toppings"
-                      :key="index"
-                    >
-                      <h6 v-if="topping.qty == 1"
-                        >A + {{ topping.name }}</h6
-                      >
-                      <h6 v-if="topping.qty != 1"
-                        >A + {{ topping.qty }} {{ topping.name }}</h6
-                      >
-                      <span>
-                        {{ (topping.price * topping.qty).toFixed(2) }}
-                      </span>
-                    </div>
+                </v-col>
+                <v-col>
+                  <div class="qtyComponent orderTitle">
+                      <div class="minusBtn unselectable" :class="productQty > 1 ? 'minusBtn' : 'hiddenAnimation'" @click="decreaseQty">-</div>
+                      <div class="qtyNum unselectable">{{ productQty }}</div>
+                      <div class="plusBtn unselectable" @click="increaseQty">+</div>
                   </div>
-
-                  <div class="bSideTopping mt-2">
-                    <span v-if="selectedItem.half2.toppings.length">
-                      <h5>B Side</h5>
-                    </span>
-                    <div
-                      class="d-flex justify-content-center halfToppings"
-                      v-for="(topping, index) in selectedItem.half2.toppings"
-                      :key="index"
-                    >
-                      <h6 v-if="topping.qty == 1"
-                        >B + {{ topping.name }}</h6
-                      >
-                      <h6 v-if="topping.qty != 1"
-                        >B + {{ topping.qty }} {{ topping.name }}</h6
-                      >
-                      <span>
-                        {{ (topping.price * topping.qty).toFixed(2) }}
-                      </span>
-                    </div>
-                  </div>
-                </v-card>
-              </div>
-            </div>
-
+                </v-col>
+              </v-row>
            
-
-         
-                <div class="container-fluid product-size-wrapper orderTitle">
-                    <div class="row">
-                        <div
-                            class="col-md-4 btn1 btn-yellow pizzaSize"
-                            @click="sizeBtn('s')"
-                            :class="{ active: size === 's' }"
-                        >
-                            Small
-                        </div>
-                        <div
-                            class="col-md-4 btn1 btn-yellow pizzaSize"
-                            @click="sizeBtn('m')"
-                            :class="{ active: size === 'm' }"
-                        >
-                            Medium
-                        </div>
-                        <div
-                            class="col-md-4 btn1 btn-yellow pizzaSize"
-                            @click="sizeBtn('xl')"
-                            :class="{ active: size === 'xl' }"
-                        >
-                            XL
-                    </div>
-                    </div>
-                    <div class="row">
-                        <div
-                            class="col-md-6 btn btn-yellow crustSize"
-                            @click="changeCrust('original')"
-                            :class="{ active: crust === 'original' }"
-                        >
-                            Original
-                        </div>
-                        <div
-                            class="col-md-6 btn btn-yellow crustSize"
-                            @click="changeCrust('thin')"
-                            :class="{ active: crust === 'thin' }"
-                        >
-                            Thin
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div
-                            class="col-sm-3 btn btn-yellow sauceSize"
-                            @click="changeSauce('sauce')"
-                            :class="{ active: sauce === 'sauce' }"
-                        >
-                            Original Sauce
-                        </div>
-                        <div
-                            class="col-sm-3 btn btn-yellow sauceSize"
-                            @click="changeSauce('less sauce')"
-                            :class="{ active: sauce === 'less sauce' }"
-                        >
-                            Less Sauce
-                        </div>
-                        <div
-                            class="col-sm-3 btn btn-yellow sauceSize"
-                            @click="changeSauce('more sauce')"
-                            :class="{ active: sauce === 'more sauce' }"
-                        >
-                        Heavy Sauce
-                        </div>
-                        <div
-                            class="col-sm-3 btn btn-yellow sauceSize"
-                            @click="changeSauce('no sauce')"
-                            :class="{ active: sauce === 'no sauce' }"
-                        >
-                            No Sauce
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div
-                            class="col-md-4 btn btn-yellow halfSize"
-                            @click="half = 'a'"
-                            :class="{ active: half === 'a'}"
-                        >
-                            A Side
-                        </div>
-                        <div
-                            class="col-md-4 btn btn-yellow halfSize"
-                            @click="half = 'b'"
-                            :class="{ active: half === 'b' }"
-                        >
-                            B Side
-                        </div>
-                        <div
-                            class="col-md-4 btn btn-yellow halfSize"
-                            @click="half = 'w'"
-                            :class="{ active: half === 'w' }"
-                        >
-                            A/B SIDE
-                        </div>
-                    </div>
-                </div>
-              
-            <v-row>
-                        <v-col cols="4" offset="2">
+                <v-row>
+                        <v-col cols="4" offset="1">
                             <table class="table mb-250" v-if="half == 'w'">
                                 <tr
                                 v-for="(ingredient, index) in this.ingredients.slice(
@@ -355,10 +399,16 @@
                                 @click="clickIncrement(ingredient)"
                                 class="ingredientsTable unselectable"
                                 >
+                                <td class="ingredient-image">
+                                    <span>
+                                        <img src="../assets/img/ingredients.png" class="ingredientImage"/>
+                                    </span>
+                                </td>
                                 <td class="toppimgTitle">
                                     <div class="toppingName">
                                     {{ ingredient.name }}
                                     <div class="toppingSettInner">
+                                        
                                         <span
                                         v-if="ingredient.price == 0"
                                         class="toppimgPrice"
@@ -408,6 +458,11 @@
                                 @click="clickIncrement(ingredient)"
                                 class="ingredientsTable unselectable"
                                 >
+                                <td class="ingredient-image">
+                                    <span>
+                                        <img src="../assets/img/ingredients.png" class="ingredientImage"/>
+                                    </span>
+                                </td>
                                 <td class="toppimgTitle">
                                     <div class="toppingName">
                                     {{ ingredient.name }}
@@ -461,6 +516,11 @@
                                 @click="clickIncrement(ingredient)"
                                 class="ingredientsTable unselectable"
                                 >
+                                <td class="ingredient-image">
+                                    <span>
+                                        <img src="../assets/img/ingredients.png" class="ingredientImage"/>
+                                    </span>
+                                </td>
                                 <td class="toppimgTitle">
                                     <div class="toppingName">
                                     {{ ingredient.name }}
@@ -505,6 +565,7 @@
                                 </tr>
                             </table>
                         </v-col>
+                        <v-col>&nbsp;</v-col>
                         <v-col cols="4">
                             <table class="table mb-250" v-if="half == 'w'">
                                 <tr
@@ -516,6 +577,11 @@
                                 @click="clickIncrement(ingredient)"
                                 class="ingredientsTable unselectable"
                                 >
+                                <td class="ingredient-image">
+                                    <span>
+                                        <img src="../assets/img/ingredients.png" class="ingredientImage"/>
+                                    </span>
+                                </td>
                                 <td class="toppimgTitle">
                                     <div class="toppingName">
                                     {{ ingredient.name }}
@@ -569,6 +635,11 @@
                                 @click="clickIncrement(ingredient)"
                                 class="ingredientsTable unselectable"
                                 >
+                                <td class="ingredient-image">
+                                    <span>
+                                        <img src="../assets/img/ingredients.png" class="ingredientImage"/>
+                                    </span>
+                                </td>
                                 <td class="toppimgTitle">
                                     <div class="toppingName">
                                     {{ ingredient.name }}
@@ -622,6 +693,11 @@
                                 @click="clickIncrement(ingredient)"
                                 class="ingredientsTable unselectable"
                                 >
+                                <td class="ingredient-image">
+                                    <span>
+                                        <img src="../assets/img/ingredients.png" class="ingredientImage"/>
+                                    </span>
+                                </td>
                                 <td class="toppimgTitle">
                                     <div class="toppingName">
                                     {{ ingredient.name }}
@@ -666,7 +742,7 @@
                                 </tr>
                             </table>
                         </v-col>
-                    </v-row> 
+                    </v-row>
             <v-card-actions class="justify-end">
                 <div class="modalTotal">
                     Price: {{ countPrice.toFixed(2) }}
