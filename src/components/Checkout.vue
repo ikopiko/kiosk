@@ -177,7 +177,7 @@
                 </v-row>
                 <v-row class="my-10">
                     <v-col cols="2">&nbsp;</v-col>
-                    <v-col cols="8" class="text-center"><h3>შეკვეთა წარმატებულია!</h3></v-col>
+                    <v-col cols="8" class="text-center"><h3>გადახდა წარმატებულია!</h3><v-icon color="green-darken-2" style="font-size: 72px;">mdi-check-circle</v-icon></v-col>
                     <v-col cols="2">&nbsp;</v-col>
                 </v-row>
                 <v-row class="my-10">
@@ -196,6 +196,34 @@
                     </v-col>
                     <v-col cols="2">&nbsp;</v-col>
                 </v-row>
+            </v-card>
+            <v-card v-if="paymentStep == 3 && paymentMethod == 'card'">
+                <v-row>
+                    <v-col cols="2">&nbsp;</v-col>
+                    <v-col cols="8" class="text-center"><h1>Logo here</h1></v-col>
+                    <v-col cols="2">&nbsp;</v-col>
+                </v-row>
+                <v-row class="my-10">
+                    <v-col cols="2">&nbsp;</v-col>
+                    <v-col cols="8" class="text-center"><h3>ტრანზაქცია წარუმატებელია</h3><v-icon color="orange-darken-2" style="font-size: 72px;">mdi-close</v-icon></v-col>
+                    <v-col cols="2">&nbsp;</v-col>
+                </v-row>
+                <!-- <v-row class="my-10">
+                    <v-col cols="2">&nbsp;</v-col>
+                    <v-col cols="8" class="text-center">
+                        <h2>
+                            თქვენი შეკვეთის ნომერია: 
+                        </h2>
+                        <p/>
+                        <div class="orderId">
+                            69
+                        </div>
+                        <h3>
+                            გთხოვთ აიღოთ ჩეკი და დაელოდოთ ნომრის გამოძახებას ეკრანზე
+                        </h3>
+                    </v-col>
+                    <v-col cols="2">&nbsp;</v-col>
+                </v-row> -->
             </v-card>
             <v-card v-if="paymentStep == 1 && paymentMethod == 'cash'">
                 <v-row>
@@ -226,8 +254,8 @@
                 </v-row>
             </v-card>
             <v-footer>
-                <v-btn @click="changeStep">Change Step</v-btn>
-                <v-btn @click="paymentProcess">Pay</v-btn>
+                <!-- <v-btn @click="changeStep">Change Step</v-btn>
+                <v-btn @click="paymentProcess">Pay</v-btn> -->
             </v-footer>
         </div>
     </v-dialog>
@@ -235,6 +263,8 @@
 </template>
 
 <script>
+
+import axios from 'axios'
 
 export default {
     props: ['activeConstructor'],
@@ -244,6 +274,7 @@ export default {
             paymentMethod: null,
             paymentDialog: false,
             paymentStep: 1,
+            terminalresponse: null,
         }
     },
     props: ['activeCheckout'],
@@ -281,6 +312,29 @@ export default {
             this.paymentStep = 1;
             if(val == 'cash') {
                 alert('ამ დროს უნდა დაიბეჭდოს ჩეკი სადაც ორდერს მინიჭებული ექნება იდ.');
+            } else if(val == 'card') {
+                var payload = {
+                    // "Price": this.cartTotal * 100,
+                    "Price": 1,
+                    "POSID": "POS1GUC1"
+                };
+                axios
+                .request({
+                method: "post",
+                url: "https://localhost:7165/TerminalPay",
+                data: payload,
+                })
+                .then((response) => {
+                    this.terminalresponse = response;
+
+                    if(this.terminalresponse.data[0].status == 1) {
+                        this.paymentStep = 2;
+                        alert('Success');
+                    } else if(this.terminalresponse.data[0].status == 2){
+                        this.paymentStep = 3;
+                        alert('Error');
+                    }
+                });
             }
             this.paymentMethod = val;
             this.paymentDialog = true;
